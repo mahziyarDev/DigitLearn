@@ -23,6 +23,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Infrastructure", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Query", "src\Common\Common.Query\Common.Query.csproj", "{8AD6E9B1-D3B4-44AF-ADF2-CC2DA2EA7B8C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\Mahziyar\Downloads\Compressed\DigiLearn-master\DigiLearn-master\docs\ClassDiagram.drawio = C:\Users\Mahziyar\Downloads\Compressed\DigiLearn-master\DigiLearn-master\docs\ClassDiagram.drawio
+		C:\Users\Mahziyar\Downloads\Compressed\DigiLearn-master\DigiLearn-master\docs\Screenshot 2023-07-07 121923.png = C:\Users\Mahziyar\Downloads\Compressed\DigiLearn-master\DigiLearn-master\docs\Screenshot 2023-07-07 121923.png
+		C:\Users\Mahziyar\Downloads\Compressed\DigiLearn-master\DigiLearn-master\docs\SubDomains.drawio = C:\Users\Mahziyar\Downloads\Compressed\DigiLearn-master\DigiLearn-master\docs\SubDomains.drawio
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
