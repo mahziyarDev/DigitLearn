@@ -1,0 +1,32 @@
+﻿using Common.Query;
+using Microsoft.EntityFrameworkCore;
+using UserModule.Core.Queries._DTOs.User;
+using UserModule.Data;
+using AutoMapper;
+
+namespace UserModule.Core.Queries.Users.GetByPhoneNumber
+{
+    public record GetUserByPhoneNumberQuery(string phoneNumber) : IBaseQuery<UserDto>;
+
+    public class GetUserByPhoneNumberQueryHandler : IBaseQueryHandler<GetUserByPhoneNumberQuery, UserDto>
+    {
+        private readonly UserContext _userContext;
+        private readonly IMapper _mapper;
+        public GetUserByPhoneNumberQueryHandler(UserContext userContext, IMapper mapper)
+        {
+            _userContext = userContext;
+            _mapper = mapper;
+        }
+
+        public async Task<UserDto?> Handle(GetUserByPhoneNumberQuery request, CancellationToken cancellationToken)
+        {
+            var user = await _userContext.Users.FirstOrDefaultAsync(x => x.PhoneNumber == request.phoneNumber, cancellationToken);
+            if (user == null)
+            {
+                return null;
+            }
+            return _mapper.Map<UserDto>(user);
+
+        }
+    }
+}

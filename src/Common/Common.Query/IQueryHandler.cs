@@ -2,8 +2,8 @@
 
 namespace Common.Query;
 
-public interface IQueryHandler<TQuery, TResponse> : IRequestHandler<TQuery, TResponse>
-    where TQuery : IQuery<TResponse>
+public interface IBaseQueryHandler<TQuery, TResponse> : IRequestHandler<TQuery, TResponse>
+    where TQuery : IBaseQuery<TResponse>
 {
 
 }

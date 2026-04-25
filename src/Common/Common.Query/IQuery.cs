@@ -3,11 +3,11 @@ using MediatR;
 
 namespace Common.Query;
 
-public interface IQuery<TResponse> : IRequest<TResponse>
+public interface IBaseQuery<TResponse> : IRequest<TResponse>
 {
 }
 
-public class QueryFilter<TResponse, TParam> : IQuery<TResponse>
+public class QueryFilter<TResponse, TParam> : IBaseQuery<TResponse>
     where TResponse : BaseFilter
     where TParam : BaseFilterParam
 {

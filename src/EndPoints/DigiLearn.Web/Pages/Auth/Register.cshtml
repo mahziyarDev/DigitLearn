@@ -1,0 +1,51 @@
+﻿@page
+@model DigiLearn.Web.Pages.Auth.RegisterModel
+@{
+    Layout = "Shared/_AuthLayout";
+    ViewData["title"] = "ثبت نام";
+}
+
+<section class="register-area">
+    <div class="row m-0">
+        <div class="col-lg-6 col-md-12 p-0">
+            <div class="register-image">
+                <img src="/assets/img/register-bg.jpg" alt="image">
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-12 p-0">
+            <div class="register-content">
+                <div class="d-table">
+                    <div class="d-table-cell">
+                        <div class="register-form">
+                            <div class="logo">
+                                <a href="index.html"><img src="/assets/img/black-logo.png" alt="image"></a>
+                            </div>
+
+                            <h3>اکنون حساب خود را بسازید</h3>
+                            <p>ثبت نام کرده اید؟ <a href="login.html">ورود</a></p>
+
+                            <form>
+                                <div class="form-group">
+                                    <input type="email" name="email" id="email" placeholder="آدرس ایمیل" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="password" name="password" id="password" placeholder="رمز عبور جدید" class="form-control">
+                                </div>
+
+                                <button type="submit">ثبت نام</button>
+
+                                <div class="connect-with-social">
+                                    <span>یا</span>
+                                    <button type="submit" class="facebook"><i class="bx bxl-facebook"></i> اتصال با فیسبوک</button>
+                                    <button type="submit" class="twitter"><i class="bx bxl-twitter"></i> اتصال با توئیتر</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
