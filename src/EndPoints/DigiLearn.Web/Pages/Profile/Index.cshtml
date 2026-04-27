@@ -1,0 +1,45 @@
+﻿@page
+@model DigiLearn.Web.Pages.Profile.IndexModel
+@{
+    Layout = "_Layout";
+    TempData["Title"] = "داشبورد";
+}
+@section Styles {
+    <link href="~/assets/profilesidebar/profilesidebar.min.css" rel="stylesheet" />
+}
+<section class="blog-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <partial name="_ProfileSideBar" />
+            <div class="col-lg-8 col-md-12">
+                
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb bg-white p-3 rounded-3 shadow-sm mb-0">
+                        <li class="breadcrumb-item">
+                            <a asp-page="/Index" class="text-decoration-none">
+                                <i class='bx bx-home'></i> خانه
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-page="/Profile/Index" class="text-decoration-none">
+                                <i class='bx bx-user'></i> پروفایل
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <i class='bx bx-grid-alt'></i> داشبورد
+                        </li>
+                    </ol>
+                </nav>
+
+
+                <div class="row">
+                    
+                   <h1>داشبورد</h1>
+                </div>
+            </div>            
+        </div>
+    </div>
+</section>
+@section Scripts {
+    <script src="~/assets/profilesidebar/profilesidebar.js"></script>
+}

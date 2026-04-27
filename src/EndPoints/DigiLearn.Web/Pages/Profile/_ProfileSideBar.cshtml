@@ -1,0 +1,73 @@
+﻿@using DigiLearn.Web.Infrastructure
+@using UserModule.Core.Services
+@using UserModule.Core
+@inject IUserFacade _userFacade
+@{
+    var user = await _userFacade.GetUserByPhoneNumber(User.GetPhoneNumber());
+}
+<div class="col-lg-4 col-md-12">
+    <aside class="widget-area">  
+        <div class="sidebar-card">
+            <!-- کارت پروفایل -->
+            <div class="profile-card">
+                <div class="profile-image-wrapper">
+                    <button class="logout-btn"><i class='bx bx-log-out'></i></button>
+                    <img src="@UserModuleDirectories.GetUserAvatar(user.Avatar)" alt="User" class="profile-img">
+                </div>
+                <div class="profile-edit">
+                    <i class='bx bx-pencil'></i>
+                    <span>@user.Name @user.Family</span>
+                </div>
+            </div>
+
+            <!-- منوی سایدبار -->
+            <ul class="sidebar-menu">
+                <li class="menu-item-single">
+                   <a asp-page="/Profile/Index">
+                        <i class='bx bx-home-circle'></i>
+                        <span>داشبورد</span>
+                    </a>
+                </li>
+
+                <li class="menu-item-single">
+                    <i class='bx bx-ticket'></i>
+                    <span>تیکت‌ها</span>
+                </li>
+
+                <li class="menu-item-single">
+                    <i class='bx bx-wallet'></i>
+                    <span>کیف پول</span>
+                </li>
+
+                <!-- منو با زیرمنو -->
+                <li class="has-submenu">
+                    <div class="menu-item-parent">
+                        <i class='bx bx-book-open'></i>
+                        <span>دوره‌ها</span>
+                        <i class='bx bx-chevron-down submenu-arrow'></i>
+                    </div>
+                    <ul class="submenu">
+                        <li><i class='bx bx-play-circle'></i> دوره‌های من</li>
+                        <li><i class='bx bx-star'></i> دوره‌های ذخیره شده</li>
+                        <li><i class='bx bx-history'></i> تاریخچه یادگیری</li>
+                    </ul>
+                </li>
+
+                <li class="has-submenu">
+                    <div class="menu-item-parent">
+                        <i class='bx bx-credit-card'></i>
+                        <span>تراکنش‌ها</span>
+                        <i class='bx bx-chevron-down submenu-arrow'></i>
+                    </div>
+                    <ul class="submenu">
+                        <li><i class='bx bx-transfer'></i> واریزها</li>
+                        <li><i class='bx bx-withdraw'></i> برداشت‌ها</li>
+                        <li><i class='bx bx-receipt'></i> صورت حساب</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </aside>
+   
+</div>
