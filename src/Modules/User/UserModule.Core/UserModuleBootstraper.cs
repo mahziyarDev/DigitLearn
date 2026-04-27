@@ -15,7 +15,7 @@ namespace UserModule.Core
             services.AddDbContext<UserContext>(option =>
             {
 
-                option.UseSqlServer(config.GetConnectionString("user_context"));
+                option.UseSqlServer(config.GetConnectionString("User_Context"));
             });
             var assembly = Assembly.GetExecutingAssembly();
 
