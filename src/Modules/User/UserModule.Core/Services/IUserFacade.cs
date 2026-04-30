@@ -3,6 +3,7 @@ using UserModule.Core.Commands.Users.Register;
 using MediatR;
 using UserModule.Core.Queries._DTOs.User;
 using UserModule.Core.Queries.Users.GetByPhoneNumber;
+using UserModule.Core.Commands.Users.EditProfile;
 
 namespace UserModule.Core.Services
 {
@@ -11,6 +12,7 @@ namespace UserModule.Core.Services
         Task<OperationResult<Guid>> RegisterUser(RegisterUserCommand command);
         //Task<UserDto?> GetUserById(Guid userId);
         Task<UserDto?> GetUserByPhoneNumber(string phoneNumber);
+        Task<OperationResult> EditProfile(EditProfileCommand command);
     }
 
     public class UserFacade : IUserFacade
@@ -33,5 +35,10 @@ namespace UserModule.Core.Services
             return await _mediator.Send(query);
         }
 
+        public async Task<OperationResult> EditProfile(EditProfileCommand command)
+        {
+            return await _mediator.Send(command);
+
+        }
     }
 }

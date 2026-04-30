@@ -1,0 +1,158 @@
+﻿@page "{ticketId:guid}/{handler?}"
+@using Common.Application.DateUtil
+@using DigiLearn.Web.Infrastructure
+@using TicketModule.Data.Entities
+@model DigiLearn.Web.Pages.Profile.Ticket.ShowTicketModel
+@{
+
+    Layout = "_Layout";
+    TempData["Title"] = Model.Ticket.Title;
+
+}
+@section Styles {
+    <link href="~/assets/profilesidebar/profilesidebar.min.css" rel="stylesheet" />
+
+    <link href="~/assets/ticket/ticket.css" rel="stylesheet" />
+}
+<section class="blog-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <partial name="_ProfileSideBar" />
+            <div class="col-lg-8 col-md-12">
+
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb bg-white p-3 rounded-3 shadow-sm mb-0">
+                        <li class="breadcrumb-item">
+                            <a asp-page="/Index" class="text-decoration-none">
+                                <i class='bx bx-home'></i> خانه
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-page="/Profile/Index" class="text-decoration-none">
+                                <i class='bx bx-user'></i> پروفایل
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <i class='bx bx-grid-alt'></i> ویرایش کاربری
+                        </li>
+                    </ol>
+                </nav>
+
+
+                <div class="row ">
+                    <div class="col-md-12 col-lg-12">
+                        <!-- کارت تیکت باز -->
+                        <div class="card shadow-sm border-0 rounded-lg">
+                            <div class="card-header bg-white border-bottom-0 pt-4 pb-0">
+                                <div class="d-flex justify-content-between align-items-center px-4 py-3">
+                                    <div class="d-flex">
+                                        <span>عنوان : </span>
+                                        <h5 class="card-title mx-2">@TempData["Title"]</h5>
+                                    </div>
+                                    <div class="">
+                                        @* دکمه بستن تیکت - فقط در صورتی که تیکت بسته نشده باشد نمایش داده شود *@
+                                        @if (Model.Ticket.TicketStatus != TicketStatus.Closed)
+                                        {
+                                            <form method="post" asp-page-handler="CloseTicket" asp-route-ticketId="@Model.Ticket.Id"
+                                                  onsubmit="return confirm('آیا از بستن این تیکت اطمینان دارید؟');">
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="bx bx-lock-alt"></i> بستن تیکت
+                                                </button>
+                                            </form>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center d-flex px-4 py-3">
+                                    @switch (Model.Ticket.TicketStatus)
+                                    {
+                                        case TicketStatus.Pending:
+                                            <span class="badge badge-info">درحال برسی</span>
+                                            break;
+                                        case TicketStatus.Answered:
+                                            <span class="badge badge-success">پاسخ داده شده</span>
+                                            break;
+                                        case TicketStatus.Closed:
+                                            <span class="badge badge-danger">بسته شده</span>
+                                            break;
+                                    }
+
+                                    <small class="text-muted">
+                                        <i class="bx bx-time"></i>
+                                        @Model.Ticket.CreationDate.ToPersianDateTime()
+                                    </small>
+                                </div>
+
+
+                                <hr class="mt-2">
+
+                            </div>
+
+                            <!-- بخش پیام‌های چت -->
+                            <div class="card-body chat-messages p-3">
+                                @foreach (var item in Model.Ticket.Messages.OrderBy(d => d.CreationDate))
+                                {
+                                    @if (item.UserId == User.GetUserId())
+                                    {
+                                        <div class="d-flex flex-column align-items-end mb-3">
+                                            <div class="message-user">
+                                                @item.Text
+                                            </div>
+                                            <div class="message-time user-time">
+                                                <i class="bx bx-time"></i>
+                                                @item.CreationDate.ToPersianDateTime()
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="d-flex flex-column align-items-start mb-3">
+                                            <div class="message-support">
+                                                @item.Text
+                                            </div>
+                                            <div class="message-time support-time">
+                                                @item.CreationDate.ToPersianDateTime()
+                                            </div>
+                                        </div>
+                                    }
+
+                                }
+
+
+                            </div>
+
+                            <!-- فرم ارسال پیام - با رفرش صفحه -->
+                            <div class="card-footer bg-white border-top-0 pb-4">
+
+                                <form method="post">
+
+                                    @if (Model.Ticket.TicketStatus == TicketStatus.Closed)
+                                    {
+                                        <input type="text" disabled="" class="form-control" placeholder="امکان ثبت پیام در این تیکت وجود ندارد">
+                                    }
+                                    else
+                                    {
+
+                                        <div class="input-group">
+                                            <textarea class="form-control message-input" asp-for="Text" rows="1" placeholder="پاسخ خود را بنویسید..." required></textarea>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary send-btn" type="submit">
+                                                    <i class="bx bx-send"></i> ارسال
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    }
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts {
+    <script src="~/assets/profilesidebar/profilesidebar.js"></script>
+    <script src="~/assets/ticket/ticket.js"></script>
+}

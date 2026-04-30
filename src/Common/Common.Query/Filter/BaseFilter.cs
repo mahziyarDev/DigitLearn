@@ -2,6 +2,7 @@
 
 public class BaseFilter
 {
+    
     public long EntityCount { get; private set; }
     public int CurrentPage { get; private set; }
     public int PageCount { get; private set; }

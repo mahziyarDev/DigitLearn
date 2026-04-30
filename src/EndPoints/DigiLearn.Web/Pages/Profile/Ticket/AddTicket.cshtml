@@ -1,0 +1,91 @@
+﻿@page
+@model DigiLearn.Web.Pages.Profile.Ticket.AddTicketModel
+@{
+    Layout = "_Layout";
+    TempData["Title"] = "ثبت تیکت";
+}
+@section Styles {
+    <link href="~/assets/profilesidebar/profilesidebar.min.css" rel="stylesheet" />
+}
+<section class="blog-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <partial name="_ProfileSideBar" />
+            <div class="col-lg-8 col-md-12">
+
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb bg-white p-3 rounded-3 shadow-sm mb-0">
+                        <li class="breadcrumb-item">
+                            <a asp-page="/Index" class="text-decoration-none">
+                                <i class='bx bx-home'></i> خانه
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-page="/Profile/Index" class="text-decoration-none">
+                                <i class='bx bx-user'></i> پروفایل
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-page="/Profile/Index" class="text-decoration-none" asp-page="/Profile/Ticket/Index">
+                                <i class="bx bx-paper-plane icon-arrow after"></i> تیکت ها
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <i class="bx bx-plus-circle"></i> ثبت تیکت
+                        </li>
+                    </ol>
+                </nav>
+
+
+                <div class="row">
+                    <section class="contact-area pb-100">
+
+                        <div class="section-title">
+
+                            <h2>ثبت تیکت جدید</h2>
+
+                        </div>
+
+                        <div class="contact-form">
+                            <form method="post">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <input type="text" asp-for="Title"
+                                                   class="form-control" placeholder="عنوان تیکت">
+                                            <div class="help-block with-errors" >
+                                                <span asp-validation-for="Title"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <textarea class="form-control"
+                                                      cols="30" rows="5" placeholder="پیام شما" asp-for="Text"></textarea>
+                                            <div class="help-block with-errors">
+                                                <span asp-validation-for="Text"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12">
+                                        <button type="submit" class="default-btn">
+                                            <i class="bx bx-paper-plane icon-arrow after"></i>
+                                            <span class="label">ارسال تیکت</span>
+                                            <i class="bx bx-paper-plane icon-arrow after"></i>
+                                            </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts {
+    <script src="~/assets/profilesidebar/profilesidebar.js"></script>
+}

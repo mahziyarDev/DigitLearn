@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="/assets/css/rtl.css">
     <link rel="stylesheet" href="/assets/css/responsive.css">
 
+    @* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css"> *@
+
     <title>@ViewData["Title"]</title>
 
     <link rel="icon" type="image/png" href="/assets/img/favicon.png">
@@ -42,7 +44,7 @@
 </head>
 
 <body>
-
+    @* <input type="hidden" id="SystemAlertTempData" value="@TempData["SystemAlert"]" /> *@
     <partial name="MainPartials/_MainHeader"/>
     
     @RenderBody()
@@ -68,8 +70,11 @@
     <script src="/assets/js/contact-form-script.js"></script>
     <script src="/assets/js/main.js"></script>
 
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @* <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> *@
     @await RenderSectionAsync("Scripts", required: false)
+    @* <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script> *@
+    @* <script src="~/assets/toastmessage/toasthelper.js"></script> *@
+    <partial name="_ValidationScriptsPartial" />
     <style type="text/css">.typewrite > .wrap { border-left: 4px solid #000000}</style>
 </body>
 </html>

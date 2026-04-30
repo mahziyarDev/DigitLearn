@@ -1,0 +1,31 @@
+﻿@model Common.Query.Filter.BaseFilter
+
+
+@if (Model.PageCount > 1)
+{
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="pagination-area text-center">
+
+            @if (Model.StartPage > 1)
+            {
+                <a href="#" onclick="changePage(1)" class="page-numbers current">1</a>
+            }
+            @for (var item = Model.StartPage; item <= Model.EndPage; item++)
+            {
+                if (item == Model.CurrentPage)
+                {
+                    <a class="page-numbers current">@item</a>
+                }
+                else
+                {
+                    <a href="#" onclick="changePage(@item)">@item</a>
+                }
+            }
+
+            @if (Model.EndPage < Model.PageCount)
+            {
+                <a href="#" onclick="changePage(@Model.PageCount)" class="page-numbers">@Model.PageCount</a>
+            }
+        </div>
+    </div>
+}

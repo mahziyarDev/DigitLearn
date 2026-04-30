@@ -6,7 +6,7 @@
     var user = await _userFacade.GetUserByPhoneNumber(User.GetPhoneNumber());
 }
 <div class="col-lg-4 col-md-12">
-    <aside class="widget-area">  
+    <aside class="widget-area">
         <div class="sidebar-card">
             <!-- کارت پروفایل -->
             <div class="profile-card">
@@ -22,21 +22,36 @@
 
             <!-- منوی سایدبار -->
             <ul class="sidebar-menu">
+                <a asp-page="/Profile/Index">
                 <li class="menu-item-single">
-                   <a asp-page="/Profile/Index">
-                        <i class='bx bx-home-circle'></i>
-                        <span>داشبورد</span>
-                    </a>
+                    <i class='bx bx-home-circle'></i>
+                    <span>داشبورد</span>
                 </li>
+                </a>
 
+                <a asp-page="/Profile/EditProfile">
                 <li class="menu-item-single">
-                    <i class='bx bx-ticket'></i>
-                    <span>تیکت‌ها</span>
+                    <i class='bx bx-edit'></i>
+                    <span>ویرایش کاربری</span>
                 </li>
+                </a>
 
-                <li class="menu-item-single">
-                    <i class='bx bx-wallet'></i>
-                    <span>کیف پول</span>
+               
+                <li class="has-submenu">
+                    <div class="menu-item-parent">
+                        <i class='bx bx-book-open'></i>
+                        <span>تیکت</span>
+                        <i class='bx bx-chevron-down submenu-arrow'></i>
+                    </div>
+                    <ul class="submenu">
+                         <a asp-page="/Profile/Ticket/Index">
+                            <li><i class="bx bx-paper-plane icon-arrow after"></i>مشاهده تیکت ها</li>
+                        </a>
+                         <a asp-page="/Profile/Ticket/AddTicket">
+                            <li><i class='bx bx-pen'></i> ثبت تیکت جدید</li>
+                        </a>
+                       
+                    </ul>
                 </li>
 
                 <!-- منو با زیرمنو -->
@@ -69,5 +84,5 @@
         </div>
 
     </aside>
-   
+
 </div>

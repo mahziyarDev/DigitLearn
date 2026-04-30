@@ -1,13 +1,11 @@
 using DigiLearn.Web.Infrastructure;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Threading.Tasks;
+using DigiLearn.Web.Infrastructure.RazorUtils;
 using UserModule.Core.Queries._DTOs.User;
 using UserModule.Core.Services;
 
 namespace DigiLearn.Web.Pages.Profile
 {
-    public class IndexModel : PageModel
+    public class IndexModel : BaseRazorToast
     {
         private readonly IUserFacade _userFacade;
 

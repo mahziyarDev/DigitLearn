@@ -1,18 +1,22 @@
 ﻿using Common.Application;
+using Common.Application.SecurityUtil;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
-using MongoDB.Driver.Linq;
 using UserModule.Data;
 
 namespace UserModule.Core.Commands.Users.EditProfile
 {
     public class EditProfileCommand : IBaseCommand
     {
-        public EditProfileCommand(string name, string family)
+        public EditProfileCommand(Guid userId, string name, string family, string? email, string? password)
         {
+            UserId = userId;
             Name = name;
             Family = family;
+            Email = email;
+            Password = password;
         }
+
         public Guid UserId { get; set; }
         public string Name { get; set; }
         public string Family { get; set; }
@@ -30,7 +34,7 @@ namespace UserModule.Core.Commands.Users.EditProfile
 
         public async Task<OperationResult> Handle(EditProfileCommand request, CancellationToken cancellationToken)
         {
-            var user = await _userContext.Users.FirstOrDefaultAsync(x => x.Id == request.UserId);
+            var user = await _userContext.Users.FirstOrDefaultAsync(x => x.Id == request.UserId,cancellationToken);
             if(user == null)
             {
                 return OperationResult.NotFound();
@@ -40,6 +44,15 @@ namespace UserModule.Core.Commands.Users.EditProfile
             if (!string.IsNullOrWhiteSpace(request.Email) && user?.Email?.ToLower() != request.Email?.ToLower())
             {
                 if(await _userContext.Users.AnyAsync(x=>x.Email == request.Email))
+                {
+                    return OperationResult.Error("شما قادر به استفاده از این ایمیل نمی باشید");
+                }
+                user.Email = request.Email;
+            }
+            if(!string.IsNullOrWhiteSpace(request.Password) &&
+                Sha256Hasher.IsCompare(user.Password, request.Password) == false)
+            {
+                user.Password = Sha256Hasher.Hash(request.Password);                
             }
             await _userContext.SaveChangesAsync();
             return OperationResult.Success();

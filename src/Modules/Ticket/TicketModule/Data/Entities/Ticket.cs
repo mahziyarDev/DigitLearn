@@ -39,4 +39,9 @@ class TicketMessage : BaseEntity
 
 
     public Ticket Ticket { get; set; }
+
+    public static implicit operator List<object>(TicketMessage v)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -1,0 +1,112 @@
+﻿
+
+.card {
+    overflow: hidden;
+    transition: all 0.2s;
+    border-radius: 1rem !important;
+}
+
+.chat-messages {
+    max-height: 450px;
+    overflow-y: auto;
+    background: #fefefe;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* حباب پیام کاربر */
+.message-user {
+    align-self: flex-end;
+    background-color: #1e40af;
+    color: white;
+    border-radius: 18px 18px 6px 18px;
+    padding: 8px 14px;
+    max-width: 80%;
+    width: fit-content;
+    margin-bottom: 6px;
+    word-wrap: break-word;
+}
+
+/* حباب پیام پشتیبان */
+.message-support {
+    align-self: flex-start;
+    background-color: #e5e7eb;
+    color: #1f2937;
+    border-radius: 18px 18px 18px 6px;
+    padding: 8px 14px;
+    max-width: 80%;
+    width: fit-content;
+    margin-bottom: 6px;
+    word-wrap: break-word;
+}
+
+/* زمان پیام */
+.message-time {
+    font-size: 0.65rem;
+    color: #9ca3af;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+.user-time {
+    text-align: left;
+    margin-right: 10px;
+}
+
+.support-time {
+    text-align: right;
+    margin-left: 10px;
+}
+
+/* فوتر و فرم */
+.message-input {
+    resize: none;
+    border-radius: 30px !important;
+    border: 1px solid #ced4da;
+    transition: 0.2s;
+}
+
+    .message-input:focus {
+        border-color: #1e40af;
+        box-shadow: 0 0 0 0.2rem rgba(30,64,175,0.25);
+    }
+
+.send-btn {
+    border-radius: 50px !important;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: 500;
+    background-color: #1e40af;
+    border: none;
+}
+
+    .send-btn:hover {
+        background-color: #0f2d7a;
+    }
+
+/* اسکرول پیام‌ها */
+.chat-messages::-webkit-scrollbar {
+    width: 5px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+/* برای موبایل */
+@media (max-width: 576px) {
+    .message-user, .message-support {
+        max-width: 95%;
+    }
+
+    .card-body {
+        padding: 12px;
+    }
+}

@@ -1,0 +1,85 @@
+﻿@page
+@model DigiLearn.Web.Pages.Profile.EditProfileModel
+@{
+    Layout = "_Layout";
+    TempData["Title"] = "ویرایش کاربری";
+}
+@section Styles {
+    <link href="~/assets/profilesidebar/profilesidebar.min.css" rel="stylesheet" />
+}
+<section class="blog-area ptb-100">
+    <div class="container">
+        <div class="row">
+            <partial name="_ProfileSideBar" />
+            <div class="col-lg-8 col-md-12">
+
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb bg-white p-3 rounded-3 shadow-sm mb-0">
+                        <li class="breadcrumb-item">
+                            <a asp-page="/Index" class="text-decoration-none">
+                                <i class='bx bx-home'></i> خانه
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-page="/Profile/Index" class="text-decoration-none">
+                                <i class='bx bx-user'></i> پروفایل
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <i class='bx bx-grid-alt'></i> ویرایش کاربری
+                        </li>
+                    </ol>
+                </nav>
+
+
+                <div class="row">
+
+                    <form class="edit-account" method="post">
+                        <h3>ویرایش</h3>
+                        <input type="hidden" class="form-control d-none" asp-for="UserId" >
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="d-flex">نام <span class="required">*</span></label>
+                                    <input type="text" class="form-control" asp-for="Name">
+                                    <span asp-validation-for="Name"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="d-flex">نام خانوادگی <span class="required">*</span></label>
+                                    <input type="text" class="form-control" asp-for="Family">
+                                    <span asp-validation-for="Family"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="d-flex">ایمیل(اختیاری) </label>
+                                    <input type="email" class="form-control" asp-for="Email">
+                                    <span asp-validation-for="Email"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                    <label class="d-flex">رمزعبور(درصورتی که قصد تغییر رمز عبور خود را ندارید این قسمت را خالی بزارید) </label>
+                                    <input type="password" class="form-control" asp-for="Password">
+                                    <span asp-validation-for="Password"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 col-md-12">
+                                <button type="submit" class="default-btn"><i class="bx bx-save icon-arrow before"></i><span class="label">ذخیره تغییرات</span><i class="bx bx-save icon-arrow after"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts {
+    <script src="~/assets/profilesidebar/profilesidebar.js"></script>
+}

@@ -30,9 +30,17 @@ class TicketService : ITicketService
 
     public async Task<OperationResult<Guid>> CreateTicket(CreateTicketCommand command)
     {
-        var ticket = _mapper.Map<Ticket>(command);
-
+        var ticket = _mapper.Map<Ticket>(command);        
         _context.Tickets.Add(ticket);
+        var ticketMessage = new TicketMessage()
+        {
+            Text = command.Text,
+            UserId = command.UserId,
+            CreationDate = ticket.CreationDate,
+            UserFullName = command.OwnerFullName,
+            Ticket = ticket
+        };
+        _context.TicketMessages.Add(ticketMessage);
         await _context.SaveChangesAsync();
         return OperationResult<Guid>.Success(ticket.Id);
     }
