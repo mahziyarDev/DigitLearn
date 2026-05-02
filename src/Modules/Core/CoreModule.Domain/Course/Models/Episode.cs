@@ -2,7 +2,7 @@
 using Common.Domain.Exceptions;
 using Common.Domain.Utils;
 
-namespace CoreModule.Domain.Course.Entities
+namespace CoreModule.Domain.Course.Models
 {
     public class Episode : BaseEntity
     {
@@ -26,7 +26,7 @@ namespace CoreModule.Domain.Course.Entities
         public string? AttachmentName { get; private set; }
         public bool IsActive { get; private set; }
 
-        void Guard() 
+        void Guard()
         {
             NullOrEmptyDomainDataException.CheckString(EnglishTitle, nameof(EnglishTitle));
             NullOrEmptyDomainDataException.CheckString(VideoName, nameof(VideoName));
@@ -35,6 +35,11 @@ namespace CoreModule.Domain.Course.Entities
             {
                 throw new InvalidDomainDataException("invalid english title");
             }
+        }
+
+        public void ToggleStatus()
+        {
+            IsActive = !IsActive;
         }
     }
 }

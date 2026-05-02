@@ -1,7 +1,7 @@
 ﻿using Common.Domain;
 using Common.Domain.Exceptions;
 
-namespace CoreModule.Domain.Course.Entities
+namespace CoreModule.Domain.Course.Models
 {
     public class Section : BaseEntity
     {
@@ -27,6 +27,12 @@ namespace CoreModule.Domain.Course.Entities
         public void AddEpisode(string title, Guid token, TimeSpan time, string videoName, string? attachmentName, bool isActive, string englishTitle)
         {
             Episodes.Add(new Episode(title, token, time, videoName, attachmentName, isActive, englishTitle, Id));
+        }
+        public void Edit(string title, int displayOrder)
+        {
+            Gaurd(title);
+            Title = title;
+            DisplayOrder = displayOrder;
         }
     }
 
