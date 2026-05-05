@@ -6,4 +6,21 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Course\Create\" />
+    <Folder Include="Course\Edit\" />
+    <Folder Include="Course\Episode\Create\" />
+    <Folder Include="Course\Episode\Edit\" />
+    <Folder Include="Course\Episode\Delete\" />
+    <Folder Include="Course\Episode\Accespt\" />
+    <Folder Include="Course\Section\Create\" />
+    <Folder Include="Course\Section\Edit\" />
+    <Folder Include="Course\Section\Delete\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Common.Application\Common.Application.csproj" />
+    <ProjectReference Include="..\CoreModule.Domain\CoreModule.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
