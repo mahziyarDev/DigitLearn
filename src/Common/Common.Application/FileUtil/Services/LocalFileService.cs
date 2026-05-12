@@ -72,7 +72,7 @@ public class LocalFileService : ILocalFileService
 
         var path = Path.Combine(folderName, fileName);
 
-        using var stream = new FileStream(path, FileMode.Create);
+        await using var stream = new FileStream(path, FileMode.Create);
         await file.CopyToAsync(stream);
         return fileName;
     }

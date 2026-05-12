@@ -2,6 +2,6 @@
 {
     public interface ICourseDomainService
     {
-        bool SlugIsExsit(string slug);
+        bool SlugIsExist(string slug);
     }
 }

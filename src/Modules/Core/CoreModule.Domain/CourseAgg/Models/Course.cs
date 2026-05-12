@@ -8,12 +8,17 @@ namespace CoreModule.Domain.CourseAgg.Models
 {
     public class Course : AggregateRoot
     {
+        //use ef
+        private Course()
+        {
+
+        }
         public Course(Guid teacherId, string title, string description,
             string imageName, string videoName,
-            SeoData seoData, int price, CourseLevel courseLevel, string slug,ICourseDomainService courseDomainService)
+            SeoData seoData, int price, CourseLevel courseLevel, string slug, Guid categoryId, Guid subCategoryId,ICourseDomainService courseDomainService)
         {
-            Guard(title, description, imageName);
-            if (courseDomainService.SlugIsExsit(title))
+            Guard(title, description, imageName, slug);
+            if (courseDomainService.SlugIsExist(title))
             {
                 throw new InvalidDomainDataException("slug is exist");
             }
@@ -29,24 +34,50 @@ namespace CoreModule.Domain.CourseAgg.Models
             LastUpdate = DateTime.Now;
             Sections = [];
             Slug = slug;
+            CategoryId = categoryId;
+            SubCategoryId = subCategoryId; 
         }
 
 
-        public Guid TeacherId { get; set; }
+        public Guid TeacherId { get; private set; }
         public Guid CategoryId { get; private set; }
         public Guid SubCategoryId { get; private set; }
-        public string Title { get; set; }
+        public string Title { get; private set; }
         public string Slug { get; private set; }
-        public string Description { get; set; }        
-        public string ImageName { get; set; }        
-        public string? VideoName { get; set; }
-        public SeoData SeoData { get; set; }
-        public DateTime LastUpdate { get; set; }
-        public int Price { get; set; }
+        public string Description { get; private set; }        
+        public string ImageName { get; private set; }        
+        public string? VideoName { get; private set; }
+        public SeoData SeoData { get; private set; }
+        public DateTime LastUpdate { get; private set; }
+        public int Price { get; private set; }
         public CourseLevel CourseLevel { get; private set; }
-        public CourseStatus CourseStatus { get; set; }
+        public CourseStatus CourseStatus { get; private set; }
         public ICollection<Section> Sections { get; private set; }
 
+        public void Edit(string title, string description, string imageName, string? videoName, int price,
+            SeoData seoData, CourseLevel courseLevel, CourseStatus status, Guid categoryId, Guid subCategoryId, string slug,
+            ICourseDomainService courseDomainService)
+        {
+            Guard(title, description, imageName, slug);
+
+            if (Slug != slug)
+                if (courseDomainService.SlugIsExist(slug))
+                    throw new InvalidDomainDataException("Slug is Exist");
+
+            Title = title;
+            Description = description;
+            ImageName = imageName;
+            VideoName = videoName;
+            Price = price;
+            LastUpdate = DateTime.Now;
+            SeoData = seoData;
+            CourseLevel = courseLevel;
+            CategoryId = categoryId;
+            SubCategoryId = subCategoryId;
+            Slug = slug;
+            CourseStatus = status;
+        }
+        
         public void AddSection(int displayOrder, string title)
         {
             if (Sections.Any(x => x.Title == title))
@@ -118,12 +149,12 @@ namespace CoreModule.Domain.CourseAgg.Models
             LastUpdate = DateTime.Now;
         }
 
-        void Guard(string title, string description, string imageName)
+        void Guard(string title, string description, string imageName, string slug)
         {
             NullOrEmptyDomainDataException.CheckString(title, nameof(title));
             NullOrEmptyDomainDataException.CheckString(description, nameof(description));
             NullOrEmptyDomainDataException.CheckString(imageName, nameof(imageName));
-            NullOrEmptyDomainDataException.CheckString(Slug, nameof(Slug));
+            NullOrEmptyDomainDataException.CheckString(slug, nameof(slug));
         }
 
     }

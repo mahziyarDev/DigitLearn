@@ -7,6 +7,9 @@ namespace Common.Infrastructure
     public class BaseEfContext<T> : DbContext where T : DbContext
     {
         private readonly IMediator _mediator;
+        /// <summary></summary>
+        /// <param name="options"></param>
+        /// <param name="mediator"></param>
         public BaseEfContext(DbContextOptions<T> options, IMediator mediator) : base(options)
         {
             _mediator = mediator;

@@ -6,6 +6,9 @@ namespace CoreModule.Domain.CourseAgg.Models
 {
     public class Episode : BaseEntity
     {
+        //use ef
+        private Episode() { }
+
         public Episode(string title, Guid token, TimeSpan time, string videoName, string? attachmentName, bool isActive, string englishTitle, Guid sectionId)
         {
             Title = title;

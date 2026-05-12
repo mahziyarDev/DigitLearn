@@ -7,6 +7,9 @@ namespace CoreModule.Domain.CategoryAgg.Models
 {
     public class Category : AggregateRoot
     {
+        //user ef
+        private Category(){}
+
         public Category(string title, string slug, Guid? parentId, ICategoryDomainService categoryDomainService)
         {
             Guard(title, slug);

@@ -5,6 +5,9 @@ namespace CoreModule.Domain.CourseAgg.Models
 {
     public class Section : BaseEntity
     {
+        //use ef
+        private Section(){}
+
         public Section(string title, int displayOrder, Guid courseId)
         {
             Gaurd(title);

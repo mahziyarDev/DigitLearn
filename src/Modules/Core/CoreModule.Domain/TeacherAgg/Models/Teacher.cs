@@ -8,6 +8,9 @@ namespace CoreModule.Domain.TeacherAgg.Models
 {
     public class Teacher : AggregateRoot
     {
+        //use ef
+        private Teacher(){}
+
         public Teacher(Guid userId, string userName, string cvFileName,
              ITeacherDomainService teacherDomainService)
         {
